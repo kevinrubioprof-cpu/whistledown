@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 48px;
+            margin: 5px 0;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-transform: uppercase;
+            margin: 5px 0;
+        }
+        
+        p {
+            font-family: 'EB Garamond', serif;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        
+        .subheading {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 5px 0;
+            padding: 10px 0;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .date-text {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        
+        .question {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            margin: 5px 0;
+        }
+        
+        .my-image {
+            width: 100px !important;  
+            height: auto !important; 
+            margin-bottom: 10px; 
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .fade1 { animation: fadeIn 1.5s ease-in forwards; opacity: 0; }
+        .fade2 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 1.5s; opacity: 0; }
+        .fade3 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 3s; opacity: 0; }
+        .fade4 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 4s; opacity: 0; }
+        .fade5 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 5s; opacity: 0; }
+        .fade6 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 6s; opacity: 0; }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #b02a6b;
+        }
+
+        .yes-btn {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
+
+        .yes-btn:hover {
+            background-color: #f0f0f0;
+            color: black;
+        }
+
+        .no-btn {
+            background-color: black;
+            color: white;
+        }
+
+        .no-btn:hover {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <img src="Lady-Whistledown-Logo-Vector.png" alt="Description" class="my-image fade1">
+    <h1 class="fade2">Lady Whistledown's</h1>
+    <h2 class="fade2">Society Papers</h2>
+    <p class="date-text fade2">Thursday, February 11, 2026</p>
+    <p class="subheading fade2">Extraordinary People, Extraordinary News</p>
+    <p class="fade3">Dearest gentle reader,</p>
+    <p class="fade4">This jaded author has received an important request from a lowly peasant. He would like to ask the diamond of the season, Ms. Karina Mendoza, a very important question. A direct quote, he asks:</p>
+    <p class="question fade5">Will you be my Valentine?</p>
+    <div class="button-container fade6">
+        <button class="btn yes-btn" onclick="showNextPage()">Yes</button>
+        <button class="btn no-btn" onclick="handleNo()">No</button>
+    </div>
+
+<script>
+let currentPage = 1;
+
+function showNextPage() {
+    document.body.style.animation = 'fadeOut 1s ease-out forwards';
+    
+    setTimeout(() => {
+        currentPage++;
+        
+        if (currentPage === 2) {
+            document.body.style.animation = '';
+            document.body.innerHTML = `
+                <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        background-color: #ffffff;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        padding: 40px;
+                        animation: fadeIn 1s ease-in forwards;
+                    }
+                    .container {
+                        display: flex;
+                        gap: 40px;
+                        align-items: flex-start;
+                        max-width: 1200px;
+                    }
+                    .image-section {
+                        flex: 1;
+                    }
+                    .image-section img {
+                        width: 100%;
+                        max-width: 500px;
+                        height: auto;
+                        border-radius: 10px;
+                    }
+                    .letter-section {
+                        flex: 1;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 18px;
+                        line-height: 1.8;
+                    }
+                    h2 {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 32px;
+                        margin-bottom: 20px;
+                    }
+                    .btn {
+                        padding: 15px 30px;
+                        font-size: 1.2em;
+                        background-color: #d63384;
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        margin-top: 20px;
+                    }
+                    .btn:hover {
+                        background-color: #b02a6b;
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                </style>
+                <div class="container">
+                    <div class="image-section">
+                        <img src="bdaydinner.jpg" alt="Picture">
+                    </div>
+                    <div class="letter-section">
+                        <h2>My Dearest Karina,</h2>
+                        <p>From the moment we met, I knew there was something special about you. Every conversation we share, every laugh we have together, brings me so much joy.</p>
+                        <p>You light up my world in ways I never thought possible, and I can't imagine going through life without you by my side.</p>
+                        <p>So today, on this special day, I have one question for you...</p>
+                        <button class="btn" onclick="showNextPage()">Continue</button>
+                    </div>
+                </div>
+            `;
+        } 
+        else if (currentPage === 3) {
+            document.body.style.animation = '';
+            document.body.innerHTML = `
+                <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        background-color: #ffffff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        animation: fadeIn 1.5s ease-in forwards;
+                    }
+                    .message {
+                        font-size: 3em;
+                        font-weight: bold;
+                        font-family: 'Playfair Display', serif;
+                        text-align: center;
+                        color: #d63384;
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: scale(0.8); }
+                        to { opacity: 1; transform: scale(1); }
+                    }
+                </style>
+                <div class="message">Thank you for saying yes! ❤️</div>
+            `;
+        }
+    }, 1000);
+}
+
+function handleNo() {
+    alert("Are you sure? 🥺 Please reconsider!");
+}
+</script>
+</body>
+</html>
