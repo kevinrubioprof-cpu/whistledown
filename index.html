@@ -3,19 +3,19 @@
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&family=UnifrakturMaguntia&family=Great+Vibes&family=Pacifico&family=Dancing+Script&family=Sacramento&display=swap" rel="stylesheet">
     <style>
-    	body {
-    	background-color: #ffffff;
-    	display: flex;
-    	flex-direction: column;
-    	justify-content: center;
-    	align-items: center;
-    	height: 100vh;
-    	margin: 0;
-    	padding: 40px;
-    	border: 3px solid black;
-    	box-shadow: inset 0 0 0 10px white, inset 0 0 0 13px black;  /* Double border effect */
-    	box-sizing: border-box;
-   	 }
+        body {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 40px;
+            border: 3px solid black;
+            box-shadow: inset 0 0 0 10px white, inset 0 0 0 13px black;  /* Double border effect */
+            box-sizing: border-box;
+        }
         h1 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -101,6 +101,7 @@
             display: flex;
             gap: 20px;
             margin-top: 20px;
+	    justify-content: center;
         }
 
         .btn {
@@ -172,6 +173,7 @@
 
 <script>
 let currentPage = 1;
+let noClickCount = 0;  // Track how many times "No" is clicked
 
 function startExperience() {
     const music = document.getElementById('bgMusic');
@@ -184,7 +186,112 @@ function startExperience() {
     document.getElementById('content').style.flexDirection = 'column';
 }
 
+function handleNo() {
+    const music = document.getElementById('bgMusic');
+    if (music.paused) {
+        music.volume = 0.3;
+        music.play();
+    }
+    
+    noClickCount++;  // Increment the counter
+    showAreYouSure();
+}
+
+function showAreYouSure() {
+    const content = document.getElementById('content');
+    content.style.animation = 'fadeOut 1s ease-out forwards';
+    
+    setTimeout(() => {
+        // Cycle through GIFs 1-5 repeatedly
+        let gifIndex = ((noClickCount - 1) % 5) + 1;
+        let gifSrc = `are-you-sure-${gifIndex}.gif`;
+        
+        content.innerHTML = `
+            <style>
+                #content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 40px;
+                    animation: fadeIn 1s ease-in forwards;
+                }
+                .are-you-sure-container {
+                    text-align: center;
+                }
+                .are-you-sure-container img {
+                    max-width: 400px;
+                    width: 100%;
+                    height: auto;
+                    border-radius: 10px;
+                    margin-bottom: 30px;
+                }
+                .are-you-sure-text {
+                    font-family: 'Playfair Display', serif;
+                    font-size: 48px;
+                    margin-bottom: 30px;
+                    color: #000000;
+                }
+                .button-container {
+                    display: flex;
+                    gap: 20px;
+                    margin-top: 20px;
+                    justify-content: center;
+                }
+                .btn {
+                    padding: 15px 30px;
+                    font-size: 1.2em;
+                    background-color: black;
+                    color: white;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+                .btn:hover {
+                    background-color: #333;
+                }
+                .yes-btn {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid black;
+                }
+                .yes-btn:hover {
+                    background-color: #f0f0f0;
+                    color: black;
+                }
+                .no-btn {
+                    background-color: black;
+                    color: white;
+                }
+                .no-btn:hover {
+                    background-color: #333;
+                    color: white;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            </style>
+            <div class="are-you-sure-container">
+                <img src="${gifSrc}" alt="Are you sure?">
+                <div class="are-you-sure-text">I kindly ask that you reconsider. Will you be my Valentine?</div>
+                <div class="button-container">
+                    <button class="btn yes-btn" onclick="showNextPage()">Yes</button>
+                    <button class="btn no-btn" onclick="handleNo()">No</button>
+                </div>
+            </div>
+        `;
+        content.style.animation = '';
+    }, 1000);
+}
+
 function showNextPage() {
+    noClickCount = 0;  // Reset counter when they finally say yes
+    
     const content = document.getElementById('content');
     content.style.animation = 'fadeOut 1s ease-out forwards';
     
@@ -267,11 +374,11 @@ function showNextPage() {
                         <p>Or us watching YouTubers eating strange food, there's no one else I would rather do that with than you.</p>
                         <p>I will always keep reminding you that you are the most intelligent, beautiful, and most importantly, the strongest most resilient woman I know.</p>
                         <p>Any hardship that has and will happen, I know you will overcome because you always have, for anything and everything, and I will be by your side to remind you of that.</p>
-                        <p>Even if you don't believe so yourself, I support and believe in you.</p>
                         <p>If you will allow me, I would like you to court me to the Contra Costa Kingdom's finest culinary establishment, Fogo de Chao, this Saturday, February 14th.</p>
                         <p>If it is not to your liking, I would still love to be in the accompaniment of your presence, regardless of what we do.</p>
                         <p>Because I know that when I am with you, my spirits will always be lifted, and my goal is to always lift yours.</p>
-			<p>Thank you for accepting and I look forward to not only this date, but many more with you, as I always do.
+                        <p>Thank you for accepting and I look forward to not only this date, but many more with you, as I always do.</p>
+			<p>And know that I will always love and protect you.</p>
                         <p>I love you, my diamond of all time.</p>
                         <p>Yours Truly,</p>
                         <p class="cursive-text">Mr. Kevin Rubio</p>
@@ -281,16 +388,6 @@ function showNextPage() {
             content.style.animation = '';
         } 
     }, 1000);
-}
-
-function handleNo() {
-    const music = document.getElementById('bgMusic');
-    if (music.paused) {
-        music.volume = 0.3;
-        music.play();
-    }
-    
-    alert("Are you sure? 🥺 Please reconsider!");
 }
 </script>
 </body>
