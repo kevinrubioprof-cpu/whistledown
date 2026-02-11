@@ -3,15 +3,19 @@
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&family=UnifrakturMaguntia&family=Great+Vibes&family=Pacifico&family=Dancing+Script&family=Sacramento&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    	body {
+    	background-color: #ffffff;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	align-items: center;
+    	height: 100vh;
+    	margin: 0;
+    	padding: 40px;
+    	border: 3px solid black;
+    	box-shadow: inset 0 0 0 10px white, inset 0 0 0 13px black;  /* Double border effect */
+    	box-sizing: border-box;
+   	 }
         h1 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -31,11 +35,10 @@
             font-size: 18px;
             margin: 5px 0;
         }
-	
-	c {
-	    font-family: 'Sacramento', cursive;
-	    font-size: 24px
-	    
+        
+        .cursive-text {
+            font-family: 'Sacramento', cursive;
+            font-size: 24px;
         }
         
         .subheading {
@@ -66,6 +69,15 @@
             width: 100px !important;  
             height: auto !important; 
             margin-bottom: 10px; 
+        }
+        
+        #content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
         }
         
         @keyframes fadeIn {
@@ -102,7 +114,8 @@
         }
 
         .btn:hover {
-            background-color: #f0f0f0;
+            background-color: #333;
+            color: white;
         }
 
         .yes-btn {
@@ -131,23 +144,25 @@
     <audio id="bgMusic" loop>
         <source src="Duomo-Wildest-Dreams.mp3" type="audio/mpeg">
     </audio>
+    
     <div id="startScreen" style="text-align: center;">
-    <h1 style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 30px;">
-        A Special Message for Ms. Karina Mendoza
-    </h1>
-         <button class="btn" onclick="startExperience()">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 30px;">
+            A Special Message for Ms. Karina Mendoza
+        </h1>
+        <button class="btn" onclick="startExperience()">
             Click for Music
-         </button>
+        </button>
     </div>
 
-<div id="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100%;">
+    <!-- Main content (initially hidden) -->
+    <div id="content" style="display: none;">
         <img src="Lady-Whistledown-Logo-Vector.png" alt="Description" class="my-image fade1">
         <h1 class="fade2">Lady Whistledown's</h1>
         <h2 class="fade2">Society Papers</h2>
-        <p class="date-text fade2">Wednesday, February 11, 2026</p>
+        <p class="date-text fade2">Thursday, February 11, 2026</p>
         <p class="subheading fade2">Extraordinary People, Extraordinary News</p>
         <p class="fade3">Dearest gentle reader,</p>
-        <p class="fade4">This jaded author has received an important request from a lowly peasant. He would like to ask the diamond of the season, Ms. Karina Mendoza, a very important question. A direct quote, he asks:</p>
+        <p class="fade4"> This jaded author has received a bold request from a lowly peasant. He would like to ask the diamond of the season, Ms. Karina Mendoza, a very important question. A direct quote, he asks:</p>
         <p class="question fade5">Will you be my Valentine?</p>
         <div class="button-container fade6">
             <button class="btn yes-btn" onclick="showNextPage()">Yes</button>
@@ -158,12 +173,16 @@
 <script>
 let currentPage = 1;
 
-// Start music on first interaction
-document.addEventListener('click', function startMusic() {
+function startExperience() {
     const music = document.getElementById('bgMusic');
     music.volume = 0.3;
-    music.play().catch(err => console.log('Music play failed:', err));
-}, { once: true });
+    music.play();
+    
+    // Hide start screen and show main content
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('content').style.display = 'flex';
+    document.getElementById('content').style.flexDirection = 'column';
+}
 
 function showNextPage() {
     const content = document.getElementById('content');
@@ -186,7 +205,7 @@ function showNextPage() {
                     .container {
                         display: flex;
                         gap: 40px;
-                        align-items: flex-start;
+                        align-items: center;
                         max-width: 1200px;
                     }
                     .image-section {
@@ -209,10 +228,9 @@ function showNextPage() {
                         font-size: 32px;
                         margin-bottom: 20px;
                     }
-		    c {
-	                font-family: 'Sacramento', cursive;
-	                font-size: 24px
-	    
+                    .cursive-text {
+                        font-family: 'Sacramento', cursive;
+                        font-size: 24px;
                     }
                     .btn {
                         padding: 15px 30px;
@@ -225,7 +243,7 @@ function showNextPage() {
                         margin-top: 20px;
                     }
                     .btn:hover {
-                        background-color: #f0f0f0;
+                        background-color: #333;
                     }
                     @keyframes fadeIn {
                         from { opacity: 0; }
@@ -242,20 +260,21 @@ function showNextPage() {
                     </div>
                     <div class="letter-section">
                         <h2>My Dearest Karina,</h2>
-                        <p>Thank you for accepting me, a lowly but hardworking, loving peasant, to have the utmost privelege of being your valentine.</p>
-			<p>Not only that, but also to have the greatest privelege of being your boyfriend. </p>
-                        <p>I still cannot comprehend how lucky I am to be with you. </p>
+                        <p>Thank you for accepting me, a lowly but hardworking, loving peasant, to have the utmost privilege of being your valentine.</p>
+                        <p>Not only that, but also to have the greatest privilege of being your boyfriend.</p>
+                        <p>I still cannot comprehend how lucky I am to be with you.</p>
                         <p>Whether it is us going out to dance to EDM, eating spicy Korean Bowls</p>
-			<p>Or us watching YouTubers eating strange food, there's no one else I would rather do that with than you. <\p>
-			<p>I will always keep reminding you that you are the most intelligent, beautiful, and most importantly, the strongest most resilient woman I know.<\p>
-			<p>Any hardship that has and will happen, I know you will overcome because you always have, for anything and everything, and I will be by your side to remind you of that.<\p>
-			<p>Even if you don't believe so yourself, I will always remind you that we will always figure it out together.<\p>
-			<p>If you will allow me, I would like you to court me to the Contra Costa Kingdom's finest culinary establishment, Fogo de Chao, which roughly translates to Ground Fire, this Saturday February 14th. </p>
-			<p>If it is not to your liking, I would still love to be in the accompaniment of your presence, regardless of what we do. </p>
-			<p>Because I know that when I am with you, my spirits will always be lifted, and my goal is to lift yours. </p>
-			<p>I love you, my diamond of the season.</p>
-			<p>Yours Truly,</p>
-			<p>Mr. Kevin Rubio</p>
+                        <p>Or us watching YouTubers eating strange food, there's no one else I would rather do that with than you.</p>
+                        <p>I will always keep reminding you that you are the most intelligent, beautiful, and most importantly, the strongest most resilient woman I know.</p>
+                        <p>Any hardship that has and will happen, I know you will overcome because you always have, for anything and everything, and I will be by your side to remind you of that.</p>
+                        <p>Even if you don't believe so yourself, I support and believe in you.</p>
+                        <p>If you will allow me, I would like you to court me to the Contra Costa Kingdom's finest culinary establishment, Fogo de Chao, this Saturday, February 14th.</p>
+                        <p>If it is not to your liking, I would still love to be in the accompaniment of your presence, regardless of what we do.</p>
+                        <p>Because I know that when I am with you, my spirits will always be lifted, and my goal is to always lift yours.</p>
+			<p>Thank you for accepting and I look forward to not only this date, but many more with you, as I always do.
+                        <p>I love you, my diamond of all time.</p>
+                        <p>Yours Truly,</p>
+                        <p class="cursive-text">Mr. Kevin Rubio</p>
                     </div>
                 </div>
             `;
@@ -265,7 +284,6 @@ function showNextPage() {
 }
 
 function handleNo() {
-    // Start music if not already playing
     const music = document.getElementById('bgMusic');
     if (music.paused) {
         music.volume = 0.3;
