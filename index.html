@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&family=UnifrakturMaguntia&family=Great+Vibes&family=Pacifico&family=Dancing+Script&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #ffffff;
@@ -30,6 +30,12 @@
             font-family: 'EB Garamond', serif;
             font-size: 18px;
             margin: 5px 0;
+        }
+	
+	c {
+	    font-family: 'Sacramento', cursive;
+	    font-size: 24px
+	    
         }
         
         .subheading {
@@ -73,11 +79,11 @@
         }
         
         .fade1 { animation: fadeIn 1.5s ease-in forwards; opacity: 0; }
-        .fade2 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 1.5s; opacity: 0; }
-        .fade3 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 3s; opacity: 0; }
-        .fade4 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 4s; opacity: 0; }
-        .fade5 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 5s; opacity: 0; }
-        .fade6 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 6s; opacity: 0; }
+        .fade2 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 2s; opacity: 0; }
+        .fade3 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 4s; opacity: 0; }
+        .fade4 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 6s; opacity: 0; }
+        .fade5 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 8s; opacity: 0; }
+        .fade6 { animation: fadeIn 1.5s ease-in forwards; animation-delay: 10s; opacity: 0; }
 
         .button-container {
             display: flex;
@@ -88,7 +94,7 @@
         .btn {
             padding: 15px 30px;
             font-size: 1.2em;
-            background-color: #d63384;
+            background-color: black;
             color: white;
             border: none;
             border-radius: 10px;
@@ -96,7 +102,7 @@
         }
 
         .btn:hover {
-            background-color: #b02a6b;
+            background-color: #f0f0f0;
         }
 
         .yes-btn {
@@ -122,41 +128,58 @@
     </style>
 </head>
 <body>
-    <img src="Lady-Whistledown-Logo-Vector.png" alt="Description" class="my-image fade1">
-    <h1 class="fade2">Lady Whistledown's</h1>
-    <h2 class="fade2">Society Papers</h2>
-    <p class="date-text fade2">Thursday, February 11, 2026</p>
-    <p class="subheading fade2">Extraordinary People, Extraordinary News</p>
-    <p class="fade3">Dearest gentle reader,</p>
-    <p class="fade4">This jaded author has received an important request from a lowly peasant. He would like to ask the diamond of the season, Ms. Karina Mendoza, a very important question. A direct quote, he asks:</p>
-    <p class="question fade5">Will you be my Valentine?</p>
-    <div class="button-container fade6">
-        <button class="btn yes-btn" onclick="showNextPage()">Yes</button>
-        <button class="btn no-btn" onclick="handleNo()">No</button>
+    <audio id="bgMusic" loop>
+        <source src="Duomo-Wildest-Dreams.mp3" type="audio/mpeg">
+    </audio>
+    <div id="startScreen" style="text-align: center;">
+    <h1 style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 30px;">
+        A Special Message for Ms. Karina Mendoza
+    </h1>
+         <button class="btn" onclick="startExperience()">
+            Click for Music
+         </button>
+    </div>
+
+<div id="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100%;">
+        <img src="Lady-Whistledown-Logo-Vector.png" alt="Description" class="my-image fade1">
+        <h1 class="fade2">Lady Whistledown's</h1>
+        <h2 class="fade2">Society Papers</h2>
+        <p class="date-text fade2">Wednesday, February 11, 2026</p>
+        <p class="subheading fade2">Extraordinary People, Extraordinary News</p>
+        <p class="fade3">Dearest gentle reader,</p>
+        <p class="fade4">This jaded author has received an important request from a lowly peasant. He would like to ask the diamond of the season, Ms. Karina Mendoza, a very important question. A direct quote, he asks:</p>
+        <p class="question fade5">Will you be my Valentine?</p>
+        <div class="button-container fade6">
+            <button class="btn yes-btn" onclick="showNextPage()">Yes</button>
+            <button class="btn no-btn" onclick="handleNo()">No</button>
+        </div>
     </div>
 
 <script>
 let currentPage = 1;
 
+// Start music on first interaction
+document.addEventListener('click', function startMusic() {
+    const music = document.getElementById('bgMusic');
+    music.volume = 0.3;
+    music.play().catch(err => console.log('Music play failed:', err));
+}, { once: true });
+
 function showNextPage() {
-    document.body.style.animation = 'fadeOut 1s ease-out forwards';
+    const content = document.getElementById('content');
+    content.style.animation = 'fadeOut 1s ease-out forwards';
     
     setTimeout(() => {
         currentPage++;
         
         if (currentPage === 2) {
-            document.body.style.animation = '';
-            document.body.innerHTML = `
-                <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond&display=swap" rel="stylesheet">
+            content.innerHTML = `
                 <style>
-                    body {
-                        background-color: #ffffff;
+                    #content {
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
                         align-items: center;
-                        height: 100vh;
-                        margin: 0;
                         padding: 40px;
                         animation: fadeIn 1s ease-in forwards;
                     }
@@ -186,10 +209,15 @@ function showNextPage() {
                         font-size: 32px;
                         margin-bottom: 20px;
                     }
+		    c {
+	                font-family: 'Sacramento', cursive;
+	                font-size: 24px
+	    
+                    }
                     .btn {
                         padding: 15px 30px;
                         font-size: 1.2em;
-                        background-color: #d63384;
+                        background-color: black;
                         color: white;
                         border: none;
                         border-radius: 10px;
@@ -197,7 +225,7 @@ function showNextPage() {
                         margin-top: 20px;
                     }
                     .btn:hover {
-                        background-color: #b02a6b;
+                        background-color: #f0f0f0;
                     }
                     @keyframes fadeIn {
                         from { opacity: 0; }
@@ -214,47 +242,36 @@ function showNextPage() {
                     </div>
                     <div class="letter-section">
                         <h2>My Dearest Karina,</h2>
-                        <p>From the moment we met, I knew there was something special about you. Every conversation we share, every laugh we have together, brings me so much joy.</p>
-                        <p>You light up my world in ways I never thought possible, and I can't imagine going through life without you by my side.</p>
-                        <p>So today, on this special day, I have one question for you...</p>
-                        <button class="btn" onclick="showNextPage()">Continue</button>
+                        <p>Thank you for accepting me, a lowly but hardworking, loving peasant, to have the utmost privelege of being your valentine.</p>
+			<p>Not only that, but also to have the greatest privelege of being your boyfriend. </p>
+                        <p>I still cannot comprehend how lucky I am to be with you. </p>
+                        <p>Whether it is us going out to dance to EDM, eating spicy Korean Bowls</p>
+			<p>Or us watching YouTubers eating strange food, there's no one else I would rather do that with than you. <\p>
+			<p>I will always keep reminding you that you are the most intelligent, beautiful, and most importantly, the strongest most resilient woman I know.<\p>
+			<p>Any hardship that has and will happen, I know you will overcome because you always have, for anything and everything, and I will be by your side to remind you of that.<\p>
+			<p>Even if you don't believe so yourself, I will always remind you that we will always figure it out together.<\p>
+			<p>If you will allow me, I would like you to court me to the Contra Costa Kingdom's finest culinary establishment, Fogo de Chao, which roughly translates to Ground Fire, this Saturday February 14th. </p>
+			<p>If it is not to your liking, I would still love to be in the accompaniment of your presence, regardless of what we do. </p>
+			<p>Because I know that when I am with you, my spirits will always be lifted, and my goal is to lift yours. </p>
+			<p>I love you, my diamond of the season.</p>
+			<p>Yours Truly,</p>
+			<p>Mr. Kevin Rubio</p>
                     </div>
                 </div>
             `;
+            content.style.animation = '';
         } 
-        else if (currentPage === 3) {
-            document.body.style.animation = '';
-            document.body.innerHTML = `
-                <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-                <style>
-                    body {
-                        background-color: #ffffff;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh;
-                        margin: 0;
-                        animation: fadeIn 1.5s ease-in forwards;
-                    }
-                    .message {
-                        font-size: 3em;
-                        font-weight: bold;
-                        font-family: 'Playfair Display', serif;
-                        text-align: center;
-                        color: #d63384;
-                    }
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: scale(0.8); }
-                        to { opacity: 1; transform: scale(1); }
-                    }
-                </style>
-                <div class="message">Thank you for saying yes! ❤️</div>
-            `;
-        }
     }, 1000);
 }
 
 function handleNo() {
+    // Start music if not already playing
+    const music = document.getElementById('bgMusic');
+    if (music.paused) {
+        music.volume = 0.3;
+        music.play();
+    }
+    
     alert("Are you sure? 🥺 Please reconsider!");
 }
 </script>
