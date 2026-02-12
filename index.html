@@ -203,7 +203,7 @@ function showAreYouSure() {
     
     setTimeout(() => {
         // Cycle through GIFs 1-5 repeatedly
-        let gifIndex = ((noClickCount - 1) % 5) + 1;
+        let gifIndex = ((noClickCount - 1) % 8) + 1;
         let gifSrc = `are-you-sure-${gifIndex}.gif`;
         
         content.innerHTML = `
